@@ -20,3 +20,170 @@ $base-font-family: sans-serif;
     min-height: 100%;
   }
 }
+
+.Copy {
+  animation-name: appear4, slideUp;
+  animation-duration: 1s;
+  animation-delay: 6s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+  @keyframes appear4 {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  @keyframes slideUp {
+    from {top: 30px;}
+    to {top: 0px;}
+  }
+
+  @keyframes flip-horizontal-top {
+    0% {
+      transform: rotateX(0);
+    }
+    100% {
+      transform: rotateX(180deg);
+    }
+  }
+}
+
+.Banana {
+  animation-name: appear, slideRight;
+  animation-duration: 1s, 1s;
+  animation-delay: 1s, 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+  @keyframes appear {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  @keyframes slideRight {
+    from {margin-right: 10px;}
+    to {margin-right: 0;}
+  }
+}
+
+.A {
+  animation-name: grow, spin, become, jump;
+  animation-duration: 1s, 500ms, 1s, 600ms;
+  animation-iteration-count: 1, 3, 1, 1;
+  animation-delay: 3.2s, 3.2s, 3.2s, 4.2s;
+  animation-timing-function: ease, linear, ease, ease;
+  animation-fill-mode: forwards;
+  text-align: center;
+
+  @keyframes grow {
+    from {font-size: 0em;}
+    to {font-size: 3em;}
+  }
+
+  @keyframes spin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(-360deg); }
+  }
+
+  @keyframes become {
+    from {opacity: 0}
+    to {opacity: 1}
+  }
+
+  @keyframes jump {
+    0% {top: 0;}
+    2% {top: 2px}
+    50% {top: -20px;}
+    // 95% {top: 2px;}
+    100% {top: 0;}
+  }
+}
+
+.Apple {
+  animation-name: appear2, slideLeft;
+  animation-duration: 1s, 1s;
+  animation-delay: 2s, 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+  @keyframes appear2 {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  @keyframes slideLeft {
+    from {margin-left: 10px;}
+    to {margin-left: 0;}
+  }
+}
+
+.Designs {
+  animation-name: appear3;
+  animation-duration: 1s;
+  animation-delay: 5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+  @keyframes appear3 {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+}
+
+.Shadow {
+  animation-name: become2, grow2;
+  animation-duration: 1.7s, 1.8s;
+  animation-iteration-count: 1, 1;
+  animation-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000);
+  animation-delay: 3.2s, 3.2s;
+  animation-fill-mode: forwards;
+
+  @keyframes grow2 {
+    0% {transform: scale(0);}
+    50% {transform: scale(1);}
+    75% {transform: scale(1.4);}
+    100% {transform: scale(1);}
+  }
+
+  @keyframes become2 {
+    0% {opacity: 0;}
+    50% {opacity: .7;}
+    75% {opacity: .2;}
+    100% {opacity: .7;}
+  }
+}
+
+.disappear {
+  animation-name: vanish, shrink;
+  animation-duration: 550ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 3s;
+
+  @keyframes vanish {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+
+  @keyframes shrink {
+    from {font-size: 1em;}
+    to {font-size: 0em; display: none;}
+  }
+}
+
+.disappear2 {
+  animation-name: vanish2, shrink2;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 3.5s;
+
+  @keyframes vanish2 {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+
+  @keyframes shrink2 {
+    from {font-size: 1em;}
+    to {font-size: 0em; display: none;}
+  }
+}
