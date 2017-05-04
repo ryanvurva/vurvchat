@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
-// import _ from 'lodash'
-// import db from './db'
+import store from '../store'
+import { observer } from 'mobx-react'
 
+@observer
 class Home extends Component {
   _submit = (event) => {
     event.preventDefault()
-    const input = this.refs.username
-    console.log(input.value)
-    input.value = ''
+    store.username = this.refs.username.value
+    this.props.history.push('/chat')
   }
   render () {
     return <div className='home'>
       <div>
-        <p>some stuff</p>
+        <p>Log In:</p>
       </div>
-      <form onSubmit={this._submit}><input type='text' placeholder='username:' ref='username' /></form>
+      <form onSubmit={this._submit}>
+        <input type='text' placeholder='"username"' ref='username' />
+      </form>
     </div>
   }
 }

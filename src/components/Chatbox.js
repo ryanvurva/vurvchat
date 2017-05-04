@@ -1,49 +1,54 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import { observer } from 'mobx-react'
+import store from '../store'
 import _ from 'lodash'
-import db from './db'
 
+@observer
 class Chatbox extends Component {
-  state = {
-    items: {}
-  }
-
-  componentDidMount () {
-    db.ref('items').on('value', (snapshot) => {
-      this.setState({
-        items: snapshot.val()
-      })
-    })
-  }
-
-  addItem (text) {
-    db.ref('items').push().set({ text, completed: false })
-  }
-
   _submit = (event) => {
     event.preventDefault()
-    const input = this.refs.message
-    this.addItem(input.value)
-    input.value = ''
+    store.addMessage(this.refs.message.value)
+    this.refs.message.value = ''
+  }
+
+  componentDidUpdate () {
+    const element = this.refs.convo
+    element.scrollTop = element.scrollHeight
   }
 
   render () {
-    return <div className='messenger'>
-      <div className='title'>
-        <h3>Title/People in Chat/Stuff</h3>
-        <button>&times;</button>
+    if (store.username) {
+      return <div className='messenger'>
+        <div className='title'>
+          <h3>{store.username} / ...and 3 others</h3>
+          <div className='logout'>
+            <a href='/' id='x'>&times;</a>
+          </div>
+        </div>
+        <div className='convo' ref='convo'>
+          <ul>
+            {_.map(store.messages, ({ username, text }, key) =>
+              <li key={key}>
+                <span className='user'>@{username}:&nbsp;</span>
+                <span className='chat'>{text}</span>
+              </li>
+            )}
+          </ul>
+        </div>
+        <div className='input'>
+          <div className='chatcreate'>
+            <h5>{store.username}:&nbsp;</h5>
+            <form onSubmit={this._submit}>
+              <input type='text' ref='message' placeholder='message...' />
+            </form>
+          </div>
+          <button onClick={store.delete}>clear chat</button>
+        </div>
       </div>
-      <div className='convo'>
-        {_.map(this.state.items, ({ completed, text }, key) =>
-          <p className='chat'>UserName: {text}</p>
-        )}
-      </div>
-      <div className='input'>
-        <h5>username:</h5>
-        <form onSubmit={this._submit}>
-          <input type='text' ref='message' placeholder='message' />
-        </form>
-      </div>
-    </div>
+    } else {
+      return <Redirect to='/' />
+    }
   }
 }
 
